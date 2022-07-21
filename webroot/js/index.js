@@ -1,17 +1,59 @@
-// Initialize and add the map
+
+var map;
+var marker = [];
+var infoWindow = [];
+var markerData = [
+  {
+    name: '東京',
+    lat: 35.6954806,
+    lng: 139.76325010000005,
+  }, {
+    name: '有明テニスの森公園テニス施設',
+    lat: 35.63467,
+    lng: 139.788526,
+  }, {
+    name: '東京体育館',
+    lat: 35.679396,
+    lng: 139.711963,
+  }
+
+];
+
+
+
+
 function initMap() {
-  // The location of Uluru
-  const uluru = { lat: -25.344, lng: 131.031 };
-  // The map, centered at Uluru
-  const map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 4,
-    center: uluru,
+  var mapLatLng = new google.maps.LatLng({lat: markerData[0]['lat'], lng: markerData[0]['lng']});
+  map = new google.maps.Map(document.getElementById('map'), { 
+    center: mapLatLng,
+    zoom: 12
   });
-  // The marker, positioned at Uluru
-  const marker = new google.maps.Marker({
-    position: uluru,
-    map: map,
+
+
+  for (var i = 0; i < markerData.length; i++) {
+    markerLatLng = new google.maps.LatLng({lat: markerData[i]['lat'], lng: markerData[i]['lng']});
+    marker[i] = new google.maps.Marker({
+      position: markerLatLng,
+      map: map
+    });
+  }
+   i/*nfoWindow[i] = new google.maps.InfoWindow({ 
+      content: '<div class="sample">' + markerData[i]['name'] + '</div>' 
+    });
+    markerEvent(i);
+  
+  }
+
+    marker[0].setOptions({
+    icon: {
+     url: markerData[0]['icon']
+    }
   });
 }
 
+function markerEvent(i) {
+  marker[i].addListener('click', function() {
+     infoWindow[i].open(map, marker[i]);
+  });*/
+}
 window.initMap = initMap;

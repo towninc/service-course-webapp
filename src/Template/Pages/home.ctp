@@ -72,7 +72,7 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
   width: 100%;
         }
         </style>
-        
+
 
     <!--
      The `defer` attribute causes the callback to execute after the full HTML
@@ -82,9 +82,8 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
     -->
     <script
       src="https://maps.googleapis.com/maps/api/js?callback=initMap&v=weekly"
-      defer
-    ></script>
-
+      defer> 
+    </script>
 <header class="row">
     <div class="header-image"><?= $this->Html->image('cake.logo.svg') ?></div>
     <div class="header-title">
