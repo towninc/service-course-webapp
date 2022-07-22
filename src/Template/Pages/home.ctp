@@ -64,15 +64,15 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
 <body class="home">
 <h3>My Google Maps Demo</h3>
     <!--The div element for the map -->
-    <div id="map"></div>
-    <style>
-        #map {
+     <div id="map">
+     <style>
+       #map {
   height: 400px;
-  /* The height is 400 pixels */
-  width: 100%;
-        }
-        </style>
 
+  width: 100%;
+       }
+     </style>
+    </div>
 
     <!--
      The `defer` attribute causes the callback to execute after the full HTML
