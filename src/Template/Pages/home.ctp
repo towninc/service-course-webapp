@@ -32,24 +32,45 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
 <!DOCTYPE html>
 <html>
 <head>
+    <script type="text/javascript">
+    console.log("Hello");
+    </script>
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
     <title>
-        <?= $cakeDescription ?>
+        <?= $MAP ?>
     </title>
 
+    
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    
+    <?= $this->Html->js('index.js') ?>
     <?= $this->Html->meta('icon') ?>
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('style.css') ?>
     <?= $this->Html->css('home.css') ?>
+    <link rel="stylesheet" type="text/css" href="./webroot/css/style.css" />
     <link href="https://fonts.googleapis.com/css?family=Raleway:500i|Roboto:300,400,700|Roboto+Mono" rel="stylesheet">
+    <script type="module" src="./webroot/js/index.js"></script>
+    
 </head>
 <body class="home">
+
+<h3>My Google Maps Demo</h3>
+<div id="map"></div>
+<script
+      src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"
+      defer
+    ></script>
 
 <header class="row">
     <div class="header-image"><?= $this->Html->image('cake.logo.svg') ?></div>
     <div class="header-title">
-        <h1>Welcome to CakePHP <?= Configure::version() ?> Red Velvet. Build fast. Grow solid.</h1>
+        <h1>Hello!It' my first web app!</h1>
     </div>
 </header>
 
@@ -273,4 +294,7 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
 </div>
 
 </body>
+
 </html>
+
+
