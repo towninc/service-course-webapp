@@ -30,6 +30,56 @@ endif;
 $cakeDescription = 'CakePHP: the rapid development PHP framework';
 ?>
 <!DOCTYPE html>
+<style type="text/css">
+    #map {
+            height: 400px;
+            /* The height is 400 pixels */
+            width: 100%;
+            /* The width is the width of the web page */
+    }
+</style>
+
+<script type="text/javascript">
+    // Initialize and add the map
+    function initMap() {
+        // The location of Uluru
+        const uluru = { lat: -25.344, lng: 131.031 };
+        var position = new Array({lat: 35.680, lng: 139.767}, {lat: 35.170, lng: 136.881}, {lat: 40.424, lng: 116.355});
+        /*// The map, centered at Uluru
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 4,
+            center: uluru,
+        });
+        // The marker, positioned at Uluru
+        const marker = new google.maps.Marker({
+            position: uluru,
+            map: map,
+        });*/
+
+        map1 = new google.maps.Map(document.getElementById("map"), {
+            zoom: 4,
+            center: {lat: latitudes[0], lng: longtitudes[0]},
+        });
+
+        marker1 = new google.maps.Marker({
+            position: position[0],
+            map: map1,
+        })
+
+        marker2 = new google.maps.Marker({
+            position: position[1],
+            map: map1,
+        })
+
+        marker3 = new google.maps.Marker({
+            position: position[2],
+            map: map1,
+        })
+    }
+
+    window.initMap = initMap;
+</script>
+
 <html>
 <head>
     <?= $this->Html->charset() ?>
@@ -38,20 +88,40 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
         <?= $cakeDescription ?>
     </title>
 
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <!--<link rel="stylesheet" type="text/css" href="./style.css" />
+    <script type="module" src="./index.js"></script>-->
     <?= $this->Html->meta('icon') ?>
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('style.css') ?>
     <?= $this->Html->css('home.css') ?>
-    <link href="https://fonts.googleapis.com/css?family=Raleway:500i|Roboto:300,400,700|Roboto+Mono" rel="stylesheet">
+    <!--<link href="https://fonts.googleapis.com/css?family=Raleway:500i|Roboto:300,400,700|Roboto+Mono" rel="stylesheet">
+    <script type="text/javascript">
+        console.log("Hello");
+    </script>-->
 </head>
 <body class="home">
 
 <header class="row">
     <div class="header-image"><?= $this->Html->image('cake.logo.svg') ?></div>
     <div class="header-title">
-        <h1>Welcome to CakePHP <?= Configure::version() ?> Red Velvet. Build fast. Grow solid.</h1>
+        <h1>Hello! It' my first web app!</h1>
     </div>
 </header>
+
+<h3>My Google Maps Demo</h3>
+    <!--The div element for the map -->
+    <div id="map"></div>
+
+    <!--<script
+      src="https://maps.googleapis.com/maps/api/js?callback=initMap&v=weekly"
+      defer
+    ></script>-->ß
+
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?callback=initMap">
+    </script>
 
 <div class="row">
     <div class="columns large-12">
