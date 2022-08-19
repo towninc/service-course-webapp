@@ -40,13 +40,34 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
 </style>
 
 <script type="text/javascript">
+    /*//ajax
+    function ajaxFanction(obj) {
+        var data = {
+            data: $('[name=huga]').val()
+        };
+        $.ajax({
+            url:  url: "/CakeProj/Hoge/ajaxTest",
+            type: "POST",
+            dataType: "json",
+            data: data,
+            success: function (data, dataType) {
+                //通信成功時の処理
+                console.log('Success : ' + data);
+            },
+            error: function (data, dataType) {
+                //通信失敗時の処理
+                console.log('Error : ' + data);
+            }
+        });
+    }*/
+
     // Initialize and add the map
     function initMap() {
         // The location of Uluru
         const uluru = { lat: -25.344, lng: 131.031 };
         var position = new Array({lat: 35.680, lng: 139.767}, {lat: 35.170, lng: 136.881}, {lat: 40.424, lng: 116.355});
-        /*// The map, centered at Uluru
-        const map = new google.maps.Map(document.getElementById("map"), {
+        // The map, centered at Uluru
+        /*const map = new google.maps.Map(document.getElementById("map"), {
             zoom: 4,
             center: uluru,
         });
@@ -58,7 +79,7 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
 
         map1 = new google.maps.Map(document.getElementById("map"), {
             zoom: 4,
-            center: {lat: latitudes[0], lng: longtitudes[0]},
+            center: {lat: 36.000, lng: 138.000},
         });
 
         marker1 = new google.maps.Marker({
@@ -117,7 +138,7 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
     <!--<script
       src="https://maps.googleapis.com/maps/api/js?callback=initMap&v=weekly"
       defer
-    ></script>-->ß
+    ></script>-->
 
     <script async
         src="https://maps.googleapis.com/maps/api/js?callback=initMap">
