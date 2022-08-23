@@ -7,6 +7,7 @@ use Cake\ORM\TableRegistry;
 class HogeController extends AppController {
 
 public function ajaxTest(){
+    //$ajax->whatever();
     $this->autoRender = false;
     $this->loadComponent('RequestHandler');
      // $this->request->is('ajax') でAjax通信か判定する

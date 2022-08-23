@@ -18,7 +18,8 @@ use Cake\Core\Plugin;
 use Cake\Datasource\ConnectionManager;
 use Cake\Error\Debugger;
 use Cake\Http\Exception\NotFoundException;
-
+use Cake\ORM\Table;
+use Cake\ORM\TableRegistry;
 $this->layout = false;
 
 if (!Configure::read('debug')) :
@@ -68,7 +69,8 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
       };
 
       // getElementById("map")の"map"は、body内の<div id="map">より
-      map = new google.maps.Map(document.getElementById("map"), opts);
+      
+
 
       // Markerの初期設定
       var markerOpts = {
@@ -136,6 +138,48 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
     </div>
 </div>
 
+<div>
+    <h3>Find Library</h3>
+    
+    
+    <?= $this->Form->create() ?>
+    <fieldset>
+        <?= $this->Form->input('find'); ?>
+        <?= $this->Form->button('Submit') ?>
+        <?= $this->Form->end() ?>
+    </fieldset>
+    <table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>LATITUDE</th>
+            <th>LONGITUDE</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    <script>
+        $articles = TableRegistry::getTableLocator()->get('Libraries');
+        $libraries= $articles->find();
+        
+    </script>
+    
+    <?php foreach ($libraries as $library): ?>
+        <tr>
+            
+            <td><?= h($library->id) ?></td>
+            <td><?= h($library->name) ?></td>
+            <td><?= h($library->latitude) ?></td>
+            <td><?= h($library->mail) ?></td>
+        </tr>
+            <?php endforeach; ?>
+            </tbody>
+    </table>
+</div>
+
+
+
 <div class="row">
     <div class="columns large-6">
         <h4>Environment</h4>
@@ -196,6 +240,9 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
 <div class="row">
     <div class="columns large-6">
         <h4>Database</h4>
+        
+        <p id="list" class="text_cat" name="text_type1">I like cat.</p>
+
         <?php
         try {
             $connection = ConnectionManager::get('default');

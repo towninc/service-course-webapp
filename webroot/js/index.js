@@ -3,9 +3,17 @@ function initMap() {
     // The location of places
     const ary=[];
     const set=[];
+    const text=[];
+    //const element=[];
+    
     var data_json;
     var d;
-    //data={};
+    var list=document.getElementById("list");
+
+    const element = document.createElement("list");
+    element.textContent="begin";
+
+    
 
     $.ajax({
       url: 'hoge/ajaxTest', //アクセスするURL
@@ -17,16 +25,15 @@ function initMap() {
     .done(function(data) { 
        //通信成功時の処理
        //成功したとき実行したいスクリプトを記載
-       console.log(data);
-       d=data;
+       //console.log(data);
       
        /*var data_stringify = JSON.stringify(data);
        data_json = JSON.parse(data_stringify);
        print(data_json=>length);*/
 
        console.log('Success : '/*+ data*/);
-       //print("o3");
-       const uluru = { lat: -25.344, lng: 131.031 };
+       
+   
     const tokyo={lat:35.6809591,lng:139.7673068};
     const map = new google.maps.Map(document.getElementById("map"), {
       zoom: 10,
@@ -34,11 +41,11 @@ function initMap() {
     });
 
     function clickEventFunc(event) {
-      alert("position:"+event.latLng.toString());
+      
       for(const elem of data){
-        console.log(elem.longitude==event.latLng.lat()&&elem.lengitude==event.latLng.lng());
-        if(elem.longitude==event.latLng.lat()&&elem.lengitude==event.latLng.lng()){
-          alert("name:"+elem.name);
+        //console.log(elem.longitude==event.latLng.lat());
+        if(elem.longitude==event.latLng.lat()&&elem.latitude==event.latLng.lng()){
+          alert("position:"+event.latLng.toString()+"name:"+elem.name);
         }
       }
     }
@@ -52,19 +59,13 @@ function initMap() {
       });
       set.push(marker);
       google.maps.event.addListener(marker, 'click', clickEventFunc);
+      
+      text.push("name:"+elem.name+" place:("+elem.latitude+","+elem.longitude+")\n");
     }
-    const marker = new google.maps.Marker({
-      position: { lat: -25.344, lng: 131.031 },
-      map: map,
-    });
-    set.push(marker);
+    //text=text.replace(/\n/g, "<br>");
+    list.textContent=text;
+
     
-    
-       
-       
-       
-       
-       
     })
     .fail(function(xhr) {  
       console.log(xhr);

@@ -38,6 +38,17 @@ class PagesController extends AppController
      * @throws \Cake\Http\Exception\NotFoundException When the view file could not
      *   be found or \Cake\View\Exception\MissingTemplateException in debug mode.
      */
+
+    public function find() {
+        $articles = [];
+        if ($this->request->is('post')) {
+            $find = $this->request->data['find'];
+            $articles = $this->Articles->find()
+                ->where(["title like " => '%' . $find . '%']);
+        }    $this->set('msg', null);
+        $this->set('articles', $articles);
+    }
+    
     public function display(...$path)
     {
         $count = count($path);
