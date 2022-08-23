@@ -47,6 +47,50 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
     
 
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+    
+    <script type="text/javascript">
+    //<![CDATA[
+
+    var map;
+    
+    // 初期化。bodyのonloadでinit()を指定することで呼び出してます
+    function init() {
+
+      // Google Mapで利用する初期設定用の変数
+      var latlng = new google.maps.LatLng(39, 138);
+      var opts = {
+        zoom: 6,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        center: latlng
+      };
+
+      // getElementById("map")の"map"は、body内の<div id="map">より
+      map = new google.maps.Map(document.getElementById("map"), opts);
+
+      // Markerの初期設定
+      var markerOpts = {
+        position: new google.maps.LatLng(39.1, 138.1),
+        map: map,
+        title: "marker click test"
+      };
+      // 直前で作成したMarkerOptionsを利用してMarkerを作成
+      var marker = new google.maps.Marker(markerOpts);
+
+      // clickイベントを取得するListenerを追加
+      google.maps.event.addListener(marker, 'click', clickEventFunc);
+    }
+
+    function clickEventFunc(event) {
+      alert(event.latLng.toString());
+      console.log("click");
+    }
+
+    //]]>
+    </script>
+
     
     <?= $this->Html->js('index.js') ?>
     <?= $this->Html->meta('icon') ?>
