@@ -23,7 +23,8 @@
         "pgbi/cakephp3-soft-delete": "~1.0",
         "moneyphp/money": "^3.3",
         "brick/math": "^0.8.15",
-        "aws/aws-sdk-php": "^3.209"
+        "aws/aws-sdk-php": "^3.209",
+        "league/csv": "^9.0"
     },
     "require-dev": {
         "psy/psysh": "@stable",
