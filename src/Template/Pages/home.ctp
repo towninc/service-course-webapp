@@ -1,4 +1,5 @@
 <?php
+// require './app/vendor/autoload.php';
 /**
  * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
@@ -18,6 +19,9 @@ use Cake\Core\Plugin;
 use Cake\Datasource\ConnectionManager;
 use Cake\Error\Debugger;
 use Cake\Http\Exception\NotFoundException;
+// use League\Csv\Reader;
+// use League\Csv\Writer;
+// use League\Csv\CharsetConverter;
 
 $this->layout = false;
 
@@ -26,6 +30,10 @@ if (!Configure::read('debug')) :
         'Please replace src/Template/Pages/home.ctp with your own version or re-enable debug mode.'
     );
 endif;
+
+// $reader = Reader::createFromPath('./app/data/sumidakuaed.csv', 'r');
+
+// CharsetConverter::addTo($reader, 'SJIS-win', 'UTF-8');
 
 $cakeDescription = 'CakePHP: the rapid development PHP framework';
 ?>
@@ -41,18 +49,37 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
     <?= $this->Html->meta('icon') ?>
 
     <!-- googleMapを追加 -->
+    <?= $this->Html->css('style.css') ?>
     <?= $this->Html->css('googleMap.css') ?>
     <?= $this->Html->script('/js/googleMap') ?>
 
     <link href="https://fonts.googleapis.com/css?family=Raleway:500i|Roboto:300,400,700|Roboto+Mono" rel="stylesheet">
-    <script type="text/javascript">
-        console.log('Hello')
-    </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 </head>
 <body class="home">
-    <h3>My Google Maps Demo</h3>
-    <div id="map"></div>
+    <nav class="navbar navbar-light bg-secondary px-4">
+        <div class="container-fluid">
+            <span class="navbar-brand">墨田区AED検索サイト</span>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row my-3">
+            <div class="input-group">
+                <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                    <option selected>施設名を選択してください</option>
+                    <option value="1">両国シティコア</option>
+                    <option value="2">スポーツクラブルネサンス両国</option>
+                    <option value="3">財団法人東京都結核予防会</option>
+                </select>
+                <button class="btn btn-outline-secondary" type="button">Button</button>
+            </div>
+        </div>
+        <!-- <?php echo $reader ?> -->
+        <div class="row">
+            <div id="map"></div>
+        </div>
+    </div>
     <script
       src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"
       defer
