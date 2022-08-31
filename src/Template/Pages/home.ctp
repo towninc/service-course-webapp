@@ -72,7 +72,7 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
                     <option value="2">スポーツクラブルネサンス両国</option>
                     <option value="3">財団法人東京都結核予防会</option>
                 </select>
-                <button class="btn btn-outline-secondary" type="button">Button</button>
+                <button class="btn btn-outline-secondary" type="button">確定</button>
             </div>
         </div>
         <!-- <?php echo $reader ?> -->
