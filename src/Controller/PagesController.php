@@ -66,4 +66,10 @@ class PagesController extends AppController
             throw new NotFoundException();
         }
     }
+
+
+    public function getajaxdata(...$path)
+    {
+        $this->set('facility', $this->facility->find('all'));
+    }
 }

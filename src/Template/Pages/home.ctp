@@ -30,7 +30,6 @@ endif;
 $cakeDescription = 'CakePHP: the rapid development PHP framework';
 ?>
 <!DOCTYPE html>
-<!DOCTYPE html>
 <!--
  @license
  Copyright 2019 Google LLC. All Rights Reserved.
@@ -40,6 +39,7 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
   <head>
     <title>Add Map</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script type="text/javascript">
         // Initialize and add the map
         function initMap() {
@@ -71,6 +71,27 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
         }
         window.initMap = initMap;
     </script>
+    <!-- <script>
+        function ajaxFanction(obj) {
+        var data = {
+            data: $('[name=huga]').val()
+        };
+            $.ajax({
+            url: "/CakeProj/Hoge/ajaxTest",
+            type: "POST",
+            dataType: "json",
+            data: data,
+            success: function (data, dataType) {
+                //通信成功時の処理
+                console.log('Success : ' + data);
+            },
+            error: function (data, dataType) {
+            //通信失敗時の処理
+            console.log('Error : ' + data);
+            }
+            });
+        }
+  </script> -->
     <style>
         /* Set the size of the div element that contains the map */
 #map {
@@ -96,5 +117,6 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
       src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"
       defer
     ></script>
+    <script src="ajax.js"></script>
   </body>
 </html>
