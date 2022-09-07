@@ -3,7 +3,8 @@ $(function(){
     function getAllData(){
         $.ajax({
             // 通信先ファイル名
-            url: "ajax_test_show_all.php",
+            url: "getajaxdata",
+            type: "GET",
             // 通信が成功した時
             success: function(data) {
                 // 取得したレコードをeachで順次取り出す
