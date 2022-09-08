@@ -37,7 +37,7 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
 
     <title>Add Map</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <?= $this->Html->meta('icon') ?>
     <?= $this->Html->css('style.css') ?>
@@ -57,9 +57,12 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
      and consistent behavior across browsers, consider loading using Promises
      with https://www.npmjs.com/package/@googlemaps/js-api-loader.
     -->
+    
     <script
       src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"
       defer
     ></script>
+
+    
   </body>
 </html>

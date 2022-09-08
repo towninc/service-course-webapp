@@ -1,0 +1,41 @@
+<?php
+namespace App\Model\Entity;
+
+use Cake\ORM\Entity;
+use Cake\ORM\TableRegistry;
+
+class Bicycle extends Entity
+{
+    public function initialize(array $config)
+    {
+        $this->setEntityClass('App\Model\Entity\BT');
+
+        $i = 0;
+        $f = fopen("./Bicycles.csv", "r");
+        while($data = fgetcsv($f)){   
+            if(implode($data) != null && $i != 0){
+                $bicyclesTable = TableRegistry::getTableLocator()->get('Bicycles');
+                $bicycle= $bicyclesTable->newEntity();
+
+                $bicycle->name = $data[1];
+                $bicycle->location = $data[2];
+                $bicycle->latitude = $data[3];
+                $bicycle->longitude = $data[4];
+                $bicycle->utilization_time = $data[5];
+                $bicycle->price_per_day = $data[6];
+                $bicycle->phone_number = $data[7];
+                $bicycle->capacity = $data[8];
+                $bicycle->url = $data[9];
+
+                if ($bicyclesTable->save($bicycle)) {
+                    $id = $bicycle->id;
+                }
+            }
+            $i++;
+        }
+        
+        fclose($f);
+
+    }
+}
+?>
