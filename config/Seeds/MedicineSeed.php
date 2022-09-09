@@ -18,14 +18,10 @@ class MedicineSeed extends AbstractSeed
      */
     public function run()
     {
-
-
-
         $f = fopen("tenpohanbai.csv", "r");
         while($data = fgetcsv($f)){
-            // 読み込んだ結果を表示します。
-            //Log::debug($data);
-            $ooo[] = [
+            // 読み込んだ結果を表示
+            $mark_data[] = [
                 'name' => $data[1],
                 'location' => $data[2],
                 'latitude' => $data[8],
@@ -34,11 +30,10 @@ class MedicineSeed extends AbstractSeed
             Log::debug($ooo);
         }
         $table = $this->table('medicines');
-        $table->insert($ooo[3])->save();
-
+        for($length=0;$length<count($mark_data);++$length){
+            $table->insert($mark_data[$length])->save();
+        }
         // test.csvを閉じます。
-
         fclose($f);
-        
     }
 }
