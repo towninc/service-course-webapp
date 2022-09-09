@@ -283,5 +283,6 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
             src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&v=weekly"
             defer
         ></script>
+        
 </body>
 </html>
