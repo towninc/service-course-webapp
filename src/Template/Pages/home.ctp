@@ -60,11 +60,13 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
 </header>
 
     <h3>My Google Maps Demo</h3>
-        <div id="map"></div>
-        <script
-            src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&v=weekly"
-            defer
-        ></script>
-        <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+    <input type="button" id="open" value="開く">
+    <input type="button" id="close" value="閉じる">
+    <div id="map"></div>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&v=weekly"
+        defer
+    ></script>
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
 </body>
 </html>

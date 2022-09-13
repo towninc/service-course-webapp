@@ -104,12 +104,11 @@ class MedicinesController extends AppController
         return $this->redirect(['action' => 'index']);
     }
     public function ajaxget(){
-
         $this->autoRender = false;
         $this->autoLayout = false;
         $medicines = TableRegistry::getTableLocator()->get('Medicines');
         $query = $medicines->find('all');
         //Log::debug($query);
-        $this->response->body(json_encode($query));;
+        $this->response->body(json_encode($query));
     }
 }

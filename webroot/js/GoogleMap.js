@@ -77,11 +77,23 @@ function ajaxFanction() {
         });
         for (let i = 0; i < data.length; i++){
           const mark = { lat: data[i].latitude, lng: data[i].longitude };
-  
           const marker = new google.maps.Marker({
               position: mark,
               map: map,
           });
+        }
+        document.getElementById('open').onclick = function(){
+          for (let i = 0; i < data.length; i++){
+            const mark = { lat: data[i].latitude, lng: data[i].longitude };
+            var infowindow = new google.maps.InfoWindow({
+              content: data[i].name,
+              position: mark,
+            });
+            infowindow.open(map);
+          }
+        }
+        document.getElementById('close').onclick = function(){
+          infowindow.close();
         }
     },
     error: function () {
@@ -89,5 +101,8 @@ function ajaxFanction() {
       console.log('response error')
     }
     });
+}
+function doClose() {
+  infowindow.close();
 }
 window.initMap = ajaxFanction;
