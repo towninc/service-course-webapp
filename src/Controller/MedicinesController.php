@@ -2,7 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\Log\Log;
+use Cake\ORM\TableRegistry;
 /**
  * Medicines Controller
  *
@@ -20,7 +21,6 @@ class MedicinesController extends AppController
     public function index()
     {
         $medicines = $this->paginate($this->Medicines);
-
         $this->set(compact('medicines'));
     }
 
@@ -102,5 +102,14 @@ class MedicinesController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+    public function ajaxget(){
+
+        $this->autoRender = false;
+        $this->autoLayout = false;
+        $medicines = TableRegistry::getTableLocator()->get('Medicines');
+        $query = $medicines->find('all');
+        //Log::debug($query);
+        $this->response->body(json_encode($query));;
     }
 }

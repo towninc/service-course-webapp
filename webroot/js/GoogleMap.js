@@ -38,27 +38,56 @@ data.push({
 });
 
 function initMap() {
-  const data1 = { lat:data[0].経度,lng:data[0].緯度}
-  const data2 = { lat:data[1].経度,lng:data[1].緯度}
-  const data3 = { lat:data[2].経度,lng:data[2].緯度}
-  console.log(data1);
-  // The map, centered at Uluru
-  const map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 15,
-    center: data1,
-  });
-  const marker1 = new google.maps.Marker({
-    position: data1,
-    map: map,
-  });
-    const marker2 = new google.maps.Marker({
-    position: data2,
-    map: map,
-  });
-  const marker3 = new google.maps.Marker({
-    position: data3,
-    map: map,
-  });
+  // const data1 = { lat:data[0].経度,lng:data[0].緯度}
+  // const data2 = { lat:data[1].経度,lng:data[1].緯度}
+  // const data3 = { lat:data[2].経度,lng:data[2].緯度}
+  // console.log(data1);
+  // const map = new google.maps.Map(document.getElementById("map"), {
+  //   zoom: 15,
+  //   center: data1,
+  // });
+  // const marker1 = new google.maps.Marker({
+  //   position: data1,
+  //   map: map,
+  // });
+  //   const marker2 = new google.maps.Marker({
+  //   position: data2,
+  //   map: map,
+  // });
+  // const marker3 = new google.maps.Marker({
+  //   position: data3,
+  //   map: map,
+  // });
 
 }
-window.initMap = initMap;
+function ajaxFanction() {
+    $.ajax({
+      url: "Medicines/ajaxget",
+      type: "GET",
+      success: function (response) {
+        //通信成功時の処理
+        console.log('response ok')
+        data = JSON.parse(response);
+        console.log(data);
+        //ローソン赤坂インターシティＡＩＲ店を中心
+        const center = { lat: 35.67005, lng: 139.742701};
+        const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 15,
+        center: center,
+        });
+        for (let i = 0; i < data.length; i++){
+          const mark = { lat: data[i].latitude, lng: data[i].longitude };
+  
+          const marker = new google.maps.Marker({
+              position: mark,
+              map: map,
+          });
+        }
+    },
+    error: function () {
+      //通信失敗時の処理
+      console.log('response error')
+    }
+    });
+}
+window.initMap = ajaxFanction;
