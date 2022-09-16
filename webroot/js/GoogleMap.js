@@ -60,9 +60,9 @@ function initMap() {
   // });
 
 }
-function ajaxFanction() {
+function AjaxGet() {
     $.ajax({
-      url: "Medicines/ajaxget",
+      url: "Childrens/ajaxget",
       type: "GET",
       success: function (response) {
         //通信成功時の処理
@@ -70,9 +70,9 @@ function ajaxFanction() {
         data = JSON.parse(response);
         console.log(data);
         //ローソン赤坂インターシティＡＩＲ店を中心
-        const center = { lat: 35.67005, lng: 139.742701};
+        const center = { lat: 35.69786, lng: 139.792409};
         const map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 15,
+        zoom: 13,
         center: center,
         });
         for (let i = 0; i < data.length; i++){
@@ -85,7 +85,7 @@ function ajaxFanction() {
         document.getElementById('open').onclick = function(){
           for (let i = 0; i < data.length; i++){
             const mark = { lat: data[i].latitude, lng: data[i].longitude };
-            var infowindow = new google.maps.InfoWindow({
+            let infowindow = new google.maps.InfoWindow({
               content: data[i].name,
               position: mark,
             });
@@ -95,6 +95,18 @@ function ajaxFanction() {
         document.getElementById('close').onclick = function(){
           infowindow.close();
         }
+        //  一覧表示作成
+        var tbody = document.getElementById('tbodyID');
+        for (i = 0; i < data.length; i++){
+          var tr = document.createElement('tr');
+          var td_id = document.createElement('td');td_id.innerHTML = data[i].id;tbody.appendChild(td_id);
+          var td_name = document.createElement('td');td_name.innerHTML = data[i].name;tbody.appendChild(td_name);
+          var td_address = document.createElement('td');td_address.innerHTML = data[i].address;tbody.appendChild(td_address);
+          var td_url = document.createElement('td');td_url.innerHTML = data[i].url;tbody.appendChild(td_url);
+          var td_tel = document.createElement('td');td_tel.innerHTML = data[i].tel;tbody.appendChild(td_tel);
+          
+          tbody.appendChild(tr);
+        }
     },
     error: function () {
       //通信失敗時の処理
@@ -102,7 +114,27 @@ function ajaxFanction() {
     }
     });
 }
-function doClose() {
-  infowindow.close();
+
+window.initMap = AjaxGet;
+
+function AjaxPost(){
+  const Form = document.getElementById('form');
+  const formData = new FormData(Form);
+  const obj = Object.fromEntries(formData);
+  const json_data = JSON.stringify(obj)
+  console.log(json_data);
+  $.ajax({
+    url:"Childrens/ajaxpost",
+    type: "POST",
+    dataType: "json",
+    data: json_data,
+    success: function () {
+      //通信成功時の処理
+
+  },
+  error: function () {
+    //通信失敗時の処理
+
+  }
+  });
 }
-window.initMap = ajaxFanction;

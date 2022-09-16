@@ -2,9 +2,9 @@
 use Migrations\AbstractSeed;
 use Cake\Log\Log;
 /**
- * Medicine seed.
+ * Children seed.
  */
-class MedicineSeed extends AbstractSeed
+class ChildrenSeed extends AbstractSeed
 {
     /**
      * Run Method.
@@ -18,25 +18,23 @@ class MedicineSeed extends AbstractSeed
      */
     public function run()
     {
-        $f = fopen("tenpohanbai.csv", "r");
+        $f = fopen("teikihoiku_utf8.csv", "r");
+        Log::debug($f);
         while($data = fgetcsv($f)){
-            // 読み込んだ結果を表示
             $mark_data[] = [
-                'name' => $data[1],
-                'location' => $data[2],
-                'location_detail'=> $data[3],
+                'name' => $data[0],
+                'address' => $data[2],
+                'url'=> $data[3],
                 'tel' => $data[4],
-                'founder' => $data[5],
-                'latitude' => $data[8],
-                'longitude' => $data[9]
+                'latitude' => $data[6],
+                'longitude' => $data[5]
             ];
             Log::debug($mark_data);
         }
-        $table = $this->table('medicines');
+        $table = $this->table('childrens');
         for($length=0;$length<count($mark_data);++$length){
             $table->insert($mark_data[$length])->save();
         }
-        // test.csvを閉じます。
         fclose($f);
     }
 }

@@ -1,7 +1,7 @@
 <?php
 use Migrations\AbstractMigration;
 
-class Medicine extends AbstractMigration
+class Children extends AbstractMigration
 {
     /**
      * Change Method.
@@ -12,28 +12,23 @@ class Medicine extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('medicines');
+        $table = $this->table('childrens');
         $table->addColumn('name', 'string', [
             'default' => null,
             'limit' => 255,
             'null' => true,
         ]);
-        $table->addColumn('location', 'string', [
+        $table->addColumn('address', 'string', [
             'default' => null,
             'limit' => 255,
             'null' => true,
         ]);
-        $table->addColumn('location_detail', 'string', [
+        $table->addColumn('url', 'string', [
             'default' => null,
             'limit' => 255,
             'null' => true,
         ]);
         $table->addColumn('tel', 'string', [
-            'default' => null,
-            'limit' => 255,
-            'null' => true,
-        ]);
-        $table->addColumn('founder', 'string', [
             'default' => null,
             'limit' => 255,
             'null' => true,
@@ -48,18 +43,5 @@ class Medicine extends AbstractMigration
         ]);
         $table->create();
     }
-
-    public function down()
-    {
-      $table = $this->table('medicines');
-      $table->changeColumn('latitude', 'float', [
-        'default' => null,
-        'null' => true,
-    ]);
-    $table->chabgeColumn('longitude', 'float', [
-        'default' => null,
-        'null' => true,
-    ]);    
-      $table->update();
-    }
 }
+

@@ -63,6 +63,27 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
     <input type="button" id="open" value="開く">
     <input type="button" id="close" value="閉じる">
     <div id="map"></div>
+    <form action="/register" method="POST" id='form'>
+        <div class="serch">
+            <label>絞り込む</label>
+            <input type="text" placeholder="〇〇保育園" name="serch_text">
+        </div>
+        <input type="button"value="検索"id="serch_button"onclick="AjaxPost()">
+    </form>
+    <table>
+        <thead>
+            <tr>
+            <td>ID</td>
+            <td>施設名</td>
+            <td>住所</td>
+            <td>URL</td>
+            <td>電話番号</td>
+            </tr>
+        </thead>
+        <tbody id="tbodyID">
+            <!-- ここをループ -->
+        </tbody>
+    </table>
     <script
         src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&v=weekly"
         defer
