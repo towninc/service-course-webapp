@@ -60,7 +60,13 @@ function initMap() {
   // });
 
 }
+
 function AjaxGet() {
+    const center = { lat: 35.69786, lng: 139.792409};
+    const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 15,
+    center: center,
+    });
     $.ajax({
       url: "Childrens/ajaxget",
       type: "GET",
@@ -69,17 +75,15 @@ function AjaxGet() {
         console.log('response ok')
         data = JSON.parse(response);
         console.log(data);
-        //ローソン赤坂インターシティＡＩＲ店を中心
-        const center = { lat: 35.69786, lng: 139.792409};
-        const map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 13,
-        center: center,
-        });
         for (let i = 0; i < data.length; i++){
           const mark = { lat: data[i].latitude, lng: data[i].longitude };
           const marker = new google.maps.Marker({
               position: mark,
               map: map,
+              icon: {
+                url: "https://japaclip.com/files/baby.png" ,
+                scaledSize: new google.maps.Size( 50, 50 ) ,
+              }
           });
         }
         document.getElementById('open').onclick = function(){
@@ -107,6 +111,46 @@ function AjaxGet() {
           
           tbody.appendChild(tr);
         }
+    },
+    error: function () {
+      //通信失敗時の処理
+      console.log('response error')
+    }
+    });
+    
+    //sprts
+    $.ajax({
+      url: "Sports/ajaxget",
+      type: "GET",
+      success: function (response) {
+        //通信成功時の処理
+        console.log('response ok sprts_data')
+        data_sports = JSON.parse(response);
+        console.log(data_sports);
+        for (let s = 0; s < data_sports.length; s++){
+          const mark_sports = { lat: data_sports[s].longitude, lng: data_sports[s].latitude};
+          const marker_sports = new google.maps.Marker({
+              position: mark_sports,
+              map: map,
+              icon: {
+                url: "https://3.bp.blogspot.com/-GK5M3Ssqycs/VD3R0tz0RdI/AAAAAAAAoJQ/n42JIfOa7RY/s800/sports_instructor.png" ,
+                scaledSize: new google.maps.Size( 50, 50 ) ,
+              }
+          });
+        }
+
+        //  一覧表示作成
+        // var tbody = document.getElementById('tbodyID');
+        // for (i = 0; i < data.length; i++){
+        //   var tr = document.createElement('tr');
+        //   var td_id = document.createElement('td');td_id.innerHTML = data[i].id;tbody.appendChild(td_id);
+        //   var td_name = document.createElement('td');td_name.innerHTML = data[i].name;tbody.appendChild(td_name);
+        //   var td_address = document.createElement('td');td_address.innerHTML = data[i].address;tbody.appendChild(td_address);
+        //   var td_url = document.createElement('td');td_url.innerHTML = data[i].url;tbody.appendChild(td_url);
+        //   var td_tel = document.createElement('td');td_tel.innerHTML = data[i].tel;tbody.appendChild(td_tel);
+          
+        //   tbody.appendChild(tr);
+        // }
     },
     error: function () {
       //通信失敗時の処理
