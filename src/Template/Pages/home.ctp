@@ -51,17 +51,15 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
 
 </head>
 <body class="home">
-
-<header class="row">
-    <div class="header-image"><?= $this->Html->image('cake.logo.svg') ?></div>
-    <div class="header-title">
-        <h1>Hello! It' my first web app!</h1>
+    <div class="head">
+        <h1>預けてスポーツ！～墨田区～  </h1>
+        <label>定期利用保育園</label>
+        <input type="button" id="open" value="開く">
+        <input type="button" id="close" value="閉じる">
+        <label>スポーツ施設</label>
+        <input type="button" id="open_sports" value="開く">
+        <input type="button" id="close_sports" value="閉じる">
     </div>
-</header>
-
-    <h3>My Google Maps Demo</h3>
-    <input type="button" id="open" value="開く">
-    <input type="button" id="close" value="閉じる">
     <div id="map"></div>
     <form action="/register" method="POST" id='form'>
         <div class="serch">
@@ -70,6 +68,7 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
         </div>
         <input type="button"value="検索"id="serch_button"onclick="AjaxPost()">
     </form>
+    <label>定期利用保育園</label>
     <table>
         <thead>
             <tr>
@@ -82,6 +81,20 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
         </thead>
         <tbody id="tbodyID">
             <!-- ここをループ -->
+        </tbody>
+    </table>
+    <label>スポーツ施設</label>
+    <table>
+        <thead>
+            <tr>
+            <td>ID</td>
+            <td>施設名</td>
+            <td>住所</td>
+            <td>URL</td>
+            <td>電話番号</td>
+            </tr>
+        </thead>
+        <tbody id="tbodyID2">
         </tbody>
     </table>
     <script

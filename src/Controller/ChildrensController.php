@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
+use Cake\Log\Log;
 /**
  * Childrens Controller
  *
@@ -112,15 +113,34 @@ class ChildrensController extends AppController
         $this->response->body(json_encode($query));
     }
     public function ajaxpost(){
-        $this->autoRender = false;
-        $this->autoLayout = false;
-        $this->response->body();
+        // $this->autoRender = false;
+        // $this->autoLayout = false;
+        // $request =$this->request->input('json_decode');
+        // $request_array = json_decode(json_encode($request), true);
         // $childrens = TableRegistry::getTableLocator()->get('Childrens');
-        // if (preg_match("$repuest", $childrens)) {
-        //     echo "OK"."n";
-        //    } else {
-        //     echo "NG"."n";
-        //    }       
+        // $query = $childrens->find('all');
+        // $query_json=json_encode($query);
+        // $query_array =json_decode($query_json);
+        // $name_list = array_column( $query_array, 'name' );
+        // $result = array_search($request_array['serch_text'], $name_list);
+        // Log::debug($request_array['serch_text']);
+        // Log::debug($name_list);
+        // Log::debug($result);
+
+        // $this->autoRender = false;
+        // $this->autoLayout = false;        
+        // $request =$this->request->input('json_decode');
+        // $request_array = json_decode(json_encode($request), true);
+        // $childrens = TableRegistry::getTableLocator()->get('Childrens');
+        // $query = $childrens->find('all');
+        // $query_json=json_encode($query);
+        // $query_array =json_decode($query_json);
+        // $name_list = array_column( $query_array, 'name' );
+        // for($i=0;$i<=count($query_array);$i++){
+        //     if(strpos($query_array[$i],$request_array['serch_text']) !== false){
+        //         $this->response->body($query_array[$i]);
+        // }
+        
     }
 
 }

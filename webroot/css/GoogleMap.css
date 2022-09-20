@@ -2,3 +2,16 @@
     height: 400px;
     width: 100%;
   }
+  h1 {
+    font-family: 'Amatic SC', cursive;
+    font-size: 40px;
+    background: url(http://webcreatorbox.com/sample/images/check.png) repeat-x 0 25px;
+    display: inline-block;
+    padding: 0 10px
+  }
+.head{
+  background-image:url("https://sozaino.site/wp-content/uploads/2021/10/sakuranbo37-.png");
+}
+label{
+  font-size: 30px;
+}

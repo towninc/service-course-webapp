@@ -138,19 +138,32 @@ function AjaxGet() {
               }
           });
         }
+        document.getElementById('open_sports').onclick = function(){
+          for (let i = 0; i < data_sports.length; i++){
+            const mark_sports = { lat: data_sports[i].longitude, lng: data_sports[i].latitude };
+            let infowindow = new google.maps.InfoWindow({
+              content: data_sports[i].name,
+              position: mark_sports,
+            });
+            infowindow.open(map);
+          }
+        }
+        document.getElementById('close_sports').onclick = function(){
+          infowindow.close();
+        }
 
-        //  一覧表示作成
-        // var tbody = document.getElementById('tbodyID');
-        // for (i = 0; i < data.length; i++){
-        //   var tr = document.createElement('tr');
-        //   var td_id = document.createElement('td');td_id.innerHTML = data[i].id;tbody.appendChild(td_id);
-        //   var td_name = document.createElement('td');td_name.innerHTML = data[i].name;tbody.appendChild(td_name);
-        //   var td_address = document.createElement('td');td_address.innerHTML = data[i].address;tbody.appendChild(td_address);
-        //   var td_url = document.createElement('td');td_url.innerHTML = data[i].url;tbody.appendChild(td_url);
-        //   var td_tel = document.createElement('td');td_tel.innerHTML = data[i].tel;tbody.appendChild(td_tel);
+         //一覧表示作成
+        var tbody = document.getElementById('tbodyID2');
+        for (i = 0; i < data_sports.length; i++){
+          var tr = document.createElement('tr');
+          var td_id = document.createElement('td');td_id.innerHTML = data_sports[i].id;tbody.appendChild(td_id);
+          var td_name = document.createElement('td');td_name.innerHTML = data_sports[i].name;tbody.appendChild(td_name);
+          var td_address = document.createElement('td');td_address.innerHTML = data_sports[i].address;tbody.appendChild(td_address);
+          var td_url = document.createElement('td');td_url.innerHTML = data_sports[i].url;tbody.appendChild(td_url);
+          var td_tel = document.createElement('td');td_tel.innerHTML = data_sports[i].tel;tbody.appendChild(td_tel);
           
-        //   tbody.appendChild(tr);
-        // }
+          tbody.appendChild(tr);
+        }
     },
     error: function () {
       //通信失敗時の処理
@@ -172,8 +185,8 @@ function AjaxPost(){
     type: "POST",
     dataType: "json",
     data: json_data,
-    success: function () {
-      //通信成功時の処理
+    success: function (response) {
+      console.log(response);
 
   },
   error: function () {
