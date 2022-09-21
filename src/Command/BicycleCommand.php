@@ -15,6 +15,7 @@ class BicycleCommand extends Command
             if(implode($data) != null  && $i != 0){
                 debug($data);
             }
+
             $i++;
         }
         

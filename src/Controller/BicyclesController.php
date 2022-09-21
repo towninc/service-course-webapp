@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
+use Cake\Log\Log;
 
 /**
  * Bicycles Controller
@@ -20,6 +22,7 @@ class BicyclesController extends AppController
     public function index()
     {
         $bicycles = $this->paginate($this->Bicycles);
+
         $this->set(compact('bicycles'));
     }
 
@@ -103,17 +106,14 @@ class BicyclesController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
-
-    /*public function initialize()
+    public function translate()
     {
-        parent::initialize();
-        $this->loadComponent('RequestHandler');
+        $this->autoRender = false;
+        $this->autoLayout = false;
+        $bicycles = TableRegistry::getTableLocator()->get('Bicycles');
+        $this->set(compact('bicycles'));
+        $query = $bicycles->find('all');
+        $this->response->body(json_encode($query));
     }
-
-    public function json()
-    {
-        $bicycles = $this->paginate($this->Bicycles);
-        $this->set(compact('bicycles', 'comments'));
-        $this->set('_serialize', ['bicycles', 'comments']);
-    }*/
 }
+?>

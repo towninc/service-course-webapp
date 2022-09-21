@@ -37,10 +37,12 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
 
     <title>Add Map</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <?= $this->Html->meta('icon') ?>
+    <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('style.css') ?>
+    <?= $this->Html->css('home.css') ?>
+    <?= $this->Html->css('map.css') ?>
     <?= $this->Html->script('/js/index') ?>
 
     <link href="https://fonts.googleapis.com/css?family=Raleway:500i|Roboto:300,400,700|Roboto+Mono" rel="stylesheet">
@@ -59,10 +61,9 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
     -->
     
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"
+      src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&v=weekly"
       defer
     ></script>
-
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   </body>
 </html>
