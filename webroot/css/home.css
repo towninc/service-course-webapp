@@ -78,6 +78,7 @@ header .header-title h1 {
 
 header h1 {
     color: #fff;
+    margin-left: 20px;
 }
 
 h3, h4 {
@@ -88,8 +89,12 @@ h3, h4 {
     -webkit-font-smoothing: antialiased;
     margin-top: 0;
     margin-bottom: 20px;
+    margin-left: 20px;
 }
 
+h5 {
+    margin-left: 20px;
+}
 .more {
     color: #ffffff;
     background-color: #d33d44;
@@ -238,3 +243,5 @@ hr {
         max-width: 940px;
     }
 }
+
+

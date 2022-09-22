@@ -33,11 +33,17 @@ function initMap() {
     var data = {
       data: $('[name=huga]').val()
     };
+    var csrf = $('input[name=_csrfToken]').val();
       $.ajax({
-        url: "http://localhost:8765/bicycles/translate",
         type: "POST",
+        //url: '<?= $this->Url->build(['controller' => 'bicycles', 'action' => 'translate']) ?>',
+        url: "http://localhost:8765/bicycles/translate",
         dataType: "json",
         data: data,
+        /*beforeSend: function(xhr) {
+          xhr.setRequestHeader('X-CSRF-Token', csrf);
+        },*/
+
         success: function (data, dataType) {
           console.log('Success : ' + data);
           //average
@@ -47,32 +53,94 @@ function initMap() {
           center: center,
         });
 
+        window.onload = function(){
+          var tbody = document.getElementById('tbodyID');
+          for (let i = 0; i < data.length; i++){
+            var tr = document.createElement('tr');
+            var td1 = document.createElement('td');
+            var td2 = document.createElement('td');
+            var td3 = document.createElement('td');
+            var td4 = document.createElement('td');
+            var td5 = document.createElement('td');
+            var td6 = document.createElement('td');
+            var td7 = document.createElement('td');
+            var td8 = document.createElement('td');
+            var td9 = document.createElement('td');
+            var td10 = document.createElement('td');
+            td1.innerHTML = data[i].id;
+            td2.innerHTML = data[i].name;
+            td3.innerHTML = data[i].location;
+            td4.innerHTML = data[i].latitude;
+            td5.innerHTML = data[i].longitude;
+            td6.innerHTML = data[i].utilization_time;
+            td7.innerHTML = data[i].price_per_day;
+            td8.innerHTML = data[i].phone_number;
+            td9.innerHTML = data[i].capacity;
+            td10.innerHTML = data[i].url;
+            tbody.appendChild(td1);
+            tbody.appendChild(td2);
+            tbody.appendChild(td3);
+            tbody.appendChild(td4);
+            tbody.appendChild(td5);
+            tbody.appendChild(td6);
+            tbody.appendChild(td7);
+            tbody.appendChild(td8);
+            tbody.appendChild(td9);
+            tbody.appendChild(td10);
+            tbody.appendChild(tr);
+          }  
+        };
         
   
-          for (let i = 0; i < data.length; i++){
-            const mark = { lat: data[i].latitude, lng: data[i].longitude };
+        for (let i = 0; i < data.length; i++){
+          const mark = { lat: data[i].latitude, lng: data[i].longitude };
 
-            const contentString =
-              data[i].location;
+          const contentString =
+            '<div id="content">' +
+            '<div id="siteNotice">' +
+            "</div>" +
+            '<h5 id="firstHeading" class="firstHeading">'+data[i].name+'</h5>' +
+            '<div id="bodyContent">' +
+            '<font size="2">' +
+            data[i].location +
+            '</font>' +
+            "<br>利用時間：" + data[i].utilization_time +
+            "<br>1日当たりの料金：" + data[i].price_per_day +
+            "<br>収容台数：" + data[i].capacity + "台" +
+            "<br>電話番号：" + data[i].phone_number +
+            "<br>URL：" + '<a href=' + data[i].url + '>' + data[i].url + '</a>' +
+            "</div>" +
+            "</div>";
+          const marker = new google.maps.Marker({
+            position: mark,
+            map: map,
+            title: data[i].name,
+            icon:{
+              url:"https://www.silhouette-illust.com/wp-content/uploads/2016/07/4415-300x300.jpg",
+              scaledSize: new google.maps.Size(30, 30)
+            },
+            optimized: false
+          });
+          
 
-            const infowindow = new google.maps.InfoWindow({
-              content: contentString,
+          const infowindow = new google.maps.InfoWindow({
+            content: contentString,
+          });
+          
+          marker.addListener("click", () => {
+            infowindow.open({
+              anchor: marker,
+              map,
+              shouldFocus: false,
             });
-    
-            const marker = new google.maps.Marker({
-                position: mark,
-                map: map,
-                title: data[i].name,
-            });
+          });
+          marker.addListener('closeclick', ()=>{
+            infowindow.close();
+          });
 
-            marker.addListener("click", () => {
-              infowindow.open({
-                anchor: marker,
-                map,
-                shouldFocus: false,
-              });
-            });
-          }
+          
+        }
+        
   
       },
       error: function (data, dataType) {

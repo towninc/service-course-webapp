@@ -42,16 +42,41 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('style.css') ?>
     <?= $this->Html->css('home.css') ?>
-    <?= $this->Html->css('map.css') ?>
     <?= $this->Html->script('/js/index') ?>
 
     <link href="https://fonts.googleapis.com/css?family=Raleway:500i|Roboto:300,400,700|Roboto+Mono" rel="stylesheet">
    
   </head>
   <body>
-    <h3>My Google Maps Demo</h3>
+  <div class="center"><h2>杉並区駐輪場</h2></div>
+  <h5>
+      検索欄
+  </h5>
+  <input type="text" id="search_text" size="12" placeholder="お探しの駐輪場">
+  <div id="map"></div>
+  <br>
+    <h4>
+      オープンデータ一覧
+    </h4>
+    <table border="1">
+      <thead>
+        <tr>
+            <th>id</th>
+            <th>名称</th>
+            <th>所在地</th>
+            <th>緯度</th>
+            <th>経度</th>
+            <th>利用時間</th>
+            <th>1日当たりの料金</th>
+            <th>電話番号</th>
+            <th>収容台数</th>
+            <th>URL</th>
+        </tr>
+      </thead>
+      <tbody id="tbodyID">
+      </tbody>
+    </table>
     <!--The div element for the map -->
-    <div id="map"></div>
 
     <!--
      The `defer` attribute causes the callback to execute after the full HTML

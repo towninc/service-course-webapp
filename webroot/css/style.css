@@ -343,6 +343,18 @@ pre {
     background: #fafafa;
 }
 
+#map {
+    height: 600px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.center {
+    margin: auto;
+    width: 60%;
+    text-align: center;
+}
+
 .index table {
     margin-top: 0rem;
     border: 0;
@@ -352,10 +364,11 @@ pre {
 
 table {
     background: #fff;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
     border: none;
-    table-layout: fixed;
-    width: 100%;
+    width: 93%;
+    margin: auto;
+    display: block;
 }
 
 table thead {
@@ -376,6 +389,7 @@ table tr th {
     color: #1798A5;
     text-align: left;
     border-bottom: 2px solid #1798A5;
+    margin: auto;
 }
 
 table tr:nth-of-type(even) {
@@ -522,3 +536,4 @@ table td {
     vertical-align: top;
     word-break: break-all;
 }
+
