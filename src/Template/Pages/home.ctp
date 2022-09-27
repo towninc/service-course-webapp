@@ -42,6 +42,7 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('style.css') ?>
     <?= $this->Html->css('home.css') ?>
+    <?= $this->Html->script('/plugins/jquery/jquery-3.6.1.min') ?>
     <?= $this->Html->script('index.js') ?>
     <link href="https://fonts.googleapis.com/css?family=Raleway:500i|Roboto:300,400,700|Roboto+Mono" rel="stylesheet">
     <script type="text/javascript">

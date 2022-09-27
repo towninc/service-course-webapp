@@ -34,6 +34,8 @@ class Application extends BaseApplication
      */
     public function bootstrap()
     {
+        // $this->addPlugin('Debunkit');
+
         // Call parent to load bootstrap from files.
         parent::bootstrap();
 
@@ -51,9 +53,12 @@ class Application extends BaseApplication
          * Only try to load DebugKit in development mode
          * Debug Kit should not be installed on a production system
          */
-        if (Configure::read('debug')) {
-            $this->addPlugin(\DebugKit\Plugin::class);
-        }
+        // if (Configure::read('debug')) {
+        //     $this->addPlugin(\DebugKit\Plugin::class);
+        // }
+
+        // // DebugKit をロードする前に
+        // Configure::write('DebugKit.panels', ['DebugKit.Packages' => false]);
     }
 
     /**
