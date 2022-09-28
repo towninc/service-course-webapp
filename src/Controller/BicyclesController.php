@@ -117,9 +117,33 @@ class BicyclesController extends AppController
         $this->response->body(json_encode($query));
     }
 
+    public function geturlBySearchName($Name)
+    {
+        $urls = Bicycles::where('name', 'like', '%' . $Name . '%')->groupBy('url')->pluck('url');
+        return response()->json($urls);
+    }
+    
+    /*public function show(Request $request)
+    {
+    $id = $request->input('id');
+    $bicycles = \DB::table('bicycles')->where('id',$id)->get();
+
+    $bicycleList = array();
+    foreach($bicycles as $bicycle){
+        $bicycleList[] = array(
+            'id'    => $bicycle->id,
+            'name'  => $bicycle->name,
+        );
+    }
+
+    header('Content-type: application/json');
+    echo json_encode($bicycleList);
+    }*/
+
     /*public function beforeFilter(Event $event)
     {
-        $this->getEventManager()->off($this->Csrf);
+        parent::beforeFilter($event);
+        $this->Security->setConfig('unlockedActions', ['translate']);
     }*/
 }
 ?>

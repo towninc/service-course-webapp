@@ -48,11 +48,16 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
    
   </head>
   <body>
-  <div class="center"><h2>杉並区駐輪場</h2></div>
-  <h5>
+  <div class="center"><h2>杉並区駐輪場</h2>
+  <label>
       検索欄
-  </h5>
-  <input type="text" id="search_text" size="12" placeholder="お探しの駐輪場">
+  </label></div>
+  <form>
+    <div class="center">
+      <input type="text" id="search_text" size="12" placeholder="お探しの駐輪場">
+      <input type="button" value="検索" id="search">
+    </div>
+  </form>
   <div id="map"></div>
   <br>
     <h4>
@@ -90,5 +95,10 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
       defer
     ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+    let button = document.getElementById('search');
+    button.addEventListener('click', ajaxSearch);
+    </script>
   </body>
+  <meta name="_csrfToken" content="{{ csrf_token() }}">
 </html>
