@@ -64,7 +64,18 @@ function AjaxGet() {
             map: map,
             position: new google.maps.LatLng(lat, lng),
           };
-          var marker = new google.maps.Marker(marker_options); //暗くなっている変数は使われていない？
+          var marker = new google.maps.Marker(marker_options);
+          var infowindow = new google.maps.InfoWindow({
+            content: data[i].title +
+                     '<br>' +
+                     data[i].place +
+                     '<br>' +
+                     data[i].address
+          });
+          console.log(infowindow);
+          marker.addListener('click', function(){
+            infowindow.open(map, marker);
+          });
         }
       },
       error: function() {
@@ -72,6 +83,6 @@ function AjaxGet() {
       }
     });
   }
-  console.log(AjaxGet);
+  // console.log(AjaxGet);
 
 window.initMap = AjaxGet;
