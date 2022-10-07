@@ -110,6 +110,29 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
     window.initMap = initMap;
   </script>
 
+  <!-- Ajax通信を行う -->
+  <script>
+    function ajaxFunction(obj) {
+      var data = {
+        data: $('[name=huga]').val()
+      };
+      $.ajax({
+        url: "/CakeProj/Hoge/ajaxTest",
+        type: "POST",
+        dataType: "json",
+        data: data,
+        success: function(data, dataType) {
+          //通信成功時の処理
+          console.log('Success : ' + data);
+        },
+        error: function(data, dataType) {
+          //通信失敗時の処理
+          console.log('Error : ' + data);
+        }
+      });
+    }
+  </script>
+
 
   <!-- 内容 -->
   <h3>My Google Maps Demo</h3>
