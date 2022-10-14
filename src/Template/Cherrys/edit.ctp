@@ -7,13 +7,19 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Cherry'), ['action' => 'index']) ?></li>
+        <li><?= $this->Form->postLink(
+                __('Delete'),
+                ['action' => 'delete', $cherry->id],
+                ['confirm' => __('Are you sure you want to delete # {0}?', $cherry->id)]
+            )
+        ?></li>
+        <li><?= $this->Html->link(__('List Cherrys'), ['action' => 'index']) ?></li>
     </ul>
 </nav>
-<div class="cherry form large-9 medium-8 columns content">
+<div class="cherrys form large-9 medium-8 columns content">
     <?= $this->Form->create($cherry) ?>
     <fieldset>
-        <legend><?= __('Add Cherry') ?></legend>
+        <legend><?= __('Edit Cherry') ?></legend>
         <?php
             echo $this->Form->control('name');
             echo $this->Form->control('yomi_name');

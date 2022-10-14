@@ -7,7 +7,7 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Cherry Model
+ * Cherrys Model
  *
  * @method \App\Model\Entity\Cherry get($primaryKey, $options = [])
  * @method \App\Model\Entity\Cherry newEntity($data = null, array $options = [])
@@ -18,7 +18,7 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\Cherry[] patchEntities($entities, array $data, array $options = [])
  * @method \App\Model\Entity\Cherry findOrCreate($search, callable $callback = null, $options = [])
  */
-class CherryTable extends Table
+class CherrysTable extends Table
 {
     /**
      * Initialize method
@@ -30,7 +30,7 @@ class CherryTable extends Table
     {
         parent::initialize($config);
 
-        $this->setTable('cherry');
+        $this->setTable('cherrys');
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
     }

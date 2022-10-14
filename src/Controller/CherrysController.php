@@ -1,17 +1,49 @@
 <?php
+
 namespace App\Controller;
 
 use App\Controller\AppController;
 
 /**
- * Cherry Controller
+ * Cherrys Controller
  *
- * @property \App\Model\Table\CherryTable $Cherry
+ * @property \App\Model\Table\CherrysTable $Cherrys
  *
  * @method \App\Model\Entity\Cherry[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
-class CherryController extends AppController
+class CherrysController extends AppController
 {
+    public function initialize()
+    {
+        parent::initialize();
+        $this->loadComponent('Security');
+    }
+
+    public function mapCherrySearch()
+    {
+        $out = '結果<br>';
+        $this->set(compact('out'));
+    }
+
+    public function mapCherryResult($id = 1)
+    {
+        header("Content-Type: application/json; charset=UTF-8"); //ヘッダー情報の明記。必須。
+    
+        $cherry1 = $this->Cherrys->get($id, [
+            'contain' => []
+        ]);
+        $cherry2 = $this->Cherrys->get($id+1, [
+            'contain' => []
+        ]);
+        $cherry3 = $this->Cherrys->get($id+2, [
+            'contain' => []
+        ]);
+
+        $cherrys = [$cherry1, $cherry2, $cherry3];
+
+        $this->set(compact('cherrys'));
+    }
+
     /**
      * Index method
      *
@@ -19,9 +51,9 @@ class CherryController extends AppController
      */
     public function index()
     {
-        $cherry = $this->paginate($this->Cherry);
+        $cherrys = $this->paginate($this->Cherrys);
 
-        $this->set(compact('cherry'));
+        $this->set(compact('cherrys'));
     }
 
     /**
@@ -33,7 +65,7 @@ class CherryController extends AppController
      */
     public function view($id = null)
     {
-        $cherry = $this->Cherry->get($id, [
+        $cherry = $this->Cherrys->get($id, [
             'contain' => []
         ]);
 
@@ -47,10 +79,10 @@ class CherryController extends AppController
      */
     public function add()
     {
-        $cherry = $this->Cherry->newEntity();
+        $cherry = $this->Cherrys->newEntity();
         if ($this->request->is('post')) {
-            $cherry = $this->Cherry->patchEntity($cherry, $this->request->getData());
-            if ($this->Cherry->save($cherry)) {
+            $cherry = $this->Cherrys->patchEntity($cherry, $this->request->getData());
+            if ($this->Cherrys->save($cherry)) {
                 $this->Flash->success(__('The cherry has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -69,12 +101,12 @@ class CherryController extends AppController
      */
     public function edit($id = null)
     {
-        $cherry = $this->Cherry->get($id, [
+        $cherry = $this->Cherrys->get($id, [
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $cherry = $this->Cherry->patchEntity($cherry, $this->request->getData());
-            if ($this->Cherry->save($cherry)) {
+            $cherry = $this->Cherrys->patchEntity($cherry, $this->request->getData());
+            if ($this->Cherrys->save($cherry)) {
                 $this->Flash->success(__('The cherry has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -94,8 +126,8 @@ class CherryController extends AppController
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $cherry = $this->Cherry->get($id);
-        if ($this->Cherry->delete($cherry)) {
+        $cherry = $this->Cherrys->get($id);
+        if ($this->Cherrys->delete($cherry)) {
             $this->Flash->success(__('The cherry has been deleted.'));
         } else {
             $this->Flash->error(__('The cherry could not be deleted. Please, try again.'));

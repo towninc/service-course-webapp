@@ -4,16 +4,10 @@ namespace App\Test\Fixture;
 use Cake\TestSuite\Fixture\TestFixture;
 
 /**
- * CherryFixture
+ * CherrysFixture
  */
-class CherryFixture extends TestFixture
+class CherrysFixture extends TestFixture
 {
-    /**
-     * Table name
-     *
-     * @var string
-     */
-    public $table = 'cherry';
     /**
      * Fields
      *

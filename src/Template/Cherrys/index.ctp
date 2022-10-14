@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\Cherry[]|\Cake\Collection\CollectionInterface $cherry
+ * @var \App\Model\Entity\Cherry[]|\Cake\Collection\CollectionInterface $cherrys
  */
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
@@ -10,8 +10,8 @@
         <li><?= $this->Html->link(__('New Cherry'), ['action' => 'add']) ?></li>
     </ul>
 </nav>
-<div class="cherry index large-9 medium-8 columns content">
-    <h3><?= __('Cherry') ?></h3>
+<div class="cherrys index large-9 medium-8 columns content">
+    <h3><?= __('Cherrys') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
@@ -26,7 +26,7 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($cherry as $cherry): ?>
+            <?php foreach ($cherrys as $cherry): ?>
             <tr>
                 <td><?= $this->Number->format($cherry->id) ?></td>
                 <td><?= h($cherry->name) ?></td>

@@ -1,14 +1,14 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-use App\Controller\CherryController;
+use App\Controller\CherrysController;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Controller\CherryController Test Case
+ * App\Controller\CherrysController Test Case
  */
-class CherryControllerTest extends TestCase
+class CherrysControllerTest extends TestCase
 {
     use IntegrationTestTrait;
 
@@ -18,7 +18,7 @@ class CherryControllerTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.Cherry'
+        'app.Cherrys'
     ];
 
     /**

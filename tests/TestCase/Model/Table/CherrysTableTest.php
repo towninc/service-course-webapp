@@ -1,21 +1,21 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\CherryTable;
+use App\Model\Table\CherrysTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\CherryTable Test Case
+ * App\Model\Table\CherrysTable Test Case
  */
-class CherryTableTest extends TestCase
+class CherrysTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\CherryTable
+     * @var \App\Model\Table\CherrysTable
      */
-    public $Cherry;
+    public $Cherrys;
 
     /**
      * Fixtures
@@ -23,7 +23,7 @@ class CherryTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.Cherry'
+        'app.Cherrys'
     ];
 
     /**
@@ -34,8 +34,8 @@ class CherryTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::getTableLocator()->exists('Cherry') ? [] : ['className' => CherryTable::class];
-        $this->Cherry = TableRegistry::getTableLocator()->get('Cherry', $config);
+        $config = TableRegistry::getTableLocator()->exists('Cherrys') ? [] : ['className' => CherrysTable::class];
+        $this->Cherrys = TableRegistry::getTableLocator()->get('Cherrys', $config);
     }
 
     /**
@@ -45,7 +45,7 @@ class CherryTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Cherry);
+        unset($this->Cherrys);
 
         parent::tearDown();
     }
