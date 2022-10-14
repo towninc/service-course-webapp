@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+
+<head>
+  <title>Add Map</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+  <style>
+    /* マップを保持する要素のサイズを指定 */
+    #map {
+      height: 400px;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap" async defer>
+  
+  </script>
+
+  <!-- 地図を追加するコード -->
+  <!-- <script>
+    // 実験的に３件のデータを読み込む
+    const dataset = [
+      [1, '松前公園', 'まつまえこうえん', '北海道', '松前町', 41.430848, 140.10868],
+      [2, '二十間道路桜並木', 'にじゅっけんどうろさくらなみき', '北海道', '新ひだか町', 42.386001, 142.422621],
+      [3, '弘前公園', 'ひろさきこうえん', '青森県', '弘前市', 40.608036, 140.463806]
+    ];
+
+    // mapを初期化して追加
+    function initMap() {
+      const locations = new Array(3);
+      const markers = new Array(3);
+
+      // dataの座標を保持
+      for (let i = 0; i < locations.length; i++) {
+        const data = dataset[i];
+        locations[i] = {
+          lat: data[5],
+          lng: data[6]
+        };
+      }
+
+      // 座標配列が正常に作られているか確認
+      console.log(locations);
+
+      // 地図、中央はlocation[0]に
+      const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 4,
+        center: locations[0],
+      });
+
+      // locationを指すmarker
+      for (let i = 0; i < markers.length; i++) {
+        markers[i] = new google.maps.Marker({
+          position: locations[i],
+          map: map,
+        });
+      }
+
+    }
+
+    window.initMap = initMap;
+  </script> -->
+
+  <!-- Ajax通信を行う -->
+
+
+  <!-- 内容 -->
+  <h3>My Google Maps Demo</h3>
+
+  <div id="map"></div>
+
+</body>
+
+</html>
