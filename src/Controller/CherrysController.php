@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Datasource\ConnectionManager;
+
 
 /**
  * Cherrys Controller
@@ -21,27 +23,44 @@ class CherrysController extends AppController
 
     public function mapCherrySearch()
     {
-        $out = '結果<br>';
-        $this->set(compact('out'));
     }
 
-    public function mapCherryResult($id = 1)
+    public function mapCherryResult()
     {
         header("Content-Type: application/json; charset=UTF-8"); //ヘッダー情報の明記。必須。
-    
-        $cherry1 = $this->Cherrys->get($id, [
-            'contain' => []
-        ]);
-        $cherry2 = $this->Cherrys->get($id+1, [
-            'contain' => []
-        ]);
-        $cherry3 = $this->Cherrys->get($id+2, [
-            'contain' => []
-        ]);
+        
+        $lat = $this->request->getData('lat');
+        $lng = $this->request->getData('lng');
 
-        $cherrys = [$cherry1, $cherry2, $cherry3];
+        $sql = "CALL `findNearestCherry`(" . $lat . ", " . $lng . ");";
+
+        $connection = ConnectionManager::get('default');
+        // 複数行を取得する場合はfetch → fetchall('assoc')にします
+        $cherrys = $connection->execute($sql)->fetchall('assoc');
+        // debug($cherrys);
 
         $this->set(compact('cherrys'));
+        $this->set(compact('lat'));
+        $this->set(compact('lng'));
+    }
+
+    public function mapCherryShowAll()
+    {
+        header("Content-Type: application/json; charset=UTF-8"); //ヘッダー情報の明記。必須。
+        
+        $sql = "SELECT * FROM cherrys";
+
+        $connection = ConnectionManager::get('default');
+        // 複数行を取得する場合はfetch → fetchall('assoc')にします
+        $cherrys = $connection->execute($sql)->fetchall('assoc');
+        // debug($cherrys);
+
+        $lat = 36.38992;
+        $lng = 139.06065;
+    
+        $this->set(compact('cherrys'));
+        $this->set(compact('lat'));
+        $this->set(compact('lng'));
     }
 
     /**

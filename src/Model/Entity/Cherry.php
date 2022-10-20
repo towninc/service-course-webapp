@@ -12,7 +12,7 @@ use Cake\ORM\Entity;
  * @property string|null $pref
  * @property string|null $city
  * @property float|null $lat
- * @property float|null $long
+ * @property float|null $lng
  */
 class Cherry extends Entity
 {
@@ -31,6 +31,6 @@ class Cherry extends Entity
         'pref' => true,
         'city' => true,
         'lat' => true,
-        'long' => true
+        'lng' => true
     ];
 }

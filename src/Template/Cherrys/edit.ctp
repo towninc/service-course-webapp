@@ -26,7 +26,7 @@
             echo $this->Form->control('pref');
             echo $this->Form->control('city');
             echo $this->Form->control('lat');
-            echo $this->Form->control('long');
+            echo $this->Form->control('lng');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

@@ -21,7 +21,7 @@
                 <th scope="col"><?= $this->Paginator->sort('pref') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('city') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('lat') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('long') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('lng') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -34,7 +34,7 @@
                 <td><?= h($cherry->pref) ?></td>
                 <td><?= h($cherry->city) ?></td>
                 <td><?= $this->Number->format($cherry->lat) ?></td>
-                <td><?= $this->Number->format($cherry->long) ?></td>
+                <td><?= $this->Number->format($cherry->lng) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $cherry->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $cherry->id]) ?>

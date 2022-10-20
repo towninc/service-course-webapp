@@ -72,8 +72,8 @@ class CherrysTable extends Table
             ->allowEmptyString('lat');
 
         $validator
-            ->decimal('long')
-            ->allowEmptyString('long');
+            ->decimal('lng')
+            ->allowEmptyString('lng');
 
         return $validator;
     }

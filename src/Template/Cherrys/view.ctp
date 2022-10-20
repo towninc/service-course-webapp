@@ -41,8 +41,8 @@
             <td><?= $this->Number->format($cherry->lat) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Long') ?></th>
-            <td><?= $this->Number->format($cherry->long) ?></td>
+            <th scope="row"><?= __('Lng') ?></th>
+            <td><?= $this->Number->format($cherry->lng) ?></td>
         </tr>
     </table>
 </div>

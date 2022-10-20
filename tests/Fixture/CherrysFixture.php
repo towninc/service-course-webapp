@@ -21,7 +21,7 @@ class CherrysFixture extends TestFixture
         'pref' => ['type' => 'string', 'length' => 4, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'city' => ['type' => 'string', 'length' => 11, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'lat' => ['type' => 'decimal', 'length' => 8, 'precision' => 6, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => ''],
-        'long' => ['type' => 'decimal', 'length' => 9, 'precision' => 6, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => ''],
+        'lng' => ['type' => 'decimal', 'length' => 9, 'precision' => 6, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => ''],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
         ],
@@ -46,7 +46,7 @@ class CherrysFixture extends TestFixture
                 'pref' => 'Lo',
                 'city' => 'Lorem ips',
                 'lat' => 1.5,
-                'long' => 1.5
+                'lng' => 1.5
             ],
         ];
         parent::init();

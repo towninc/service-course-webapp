@@ -2,6 +2,9 @@
     #big {
         font-size: 1.5em;
     }
+    #small {
+        font-size: 0.7em;
+    }
 
 </style>
 
@@ -10,19 +13,18 @@
 <ol>
     <?php foreach ($cherrys as $cherry) : ?>
         <li>
-            <span id="big"> <?= h($cherry->name) ?> </span> <?= h($cherry->yomi_name) ?><br>
-            <?= h($cherry->pref) ?><?= h($cherry->city) ?>にある桜の名所です。
+            <span id="big"> <?= h($cherry['name']) ?> </span> <span id="small"><?= h($cherry['yomi_name']) ?></span> <br>
+            <?= h($cherry['pref']) ?><?= h($cherry['city']) ?>にある桜の名所です。
         </li>
     <?php endforeach; ?>
 </ol>
 
 
 <script>
-
     // ３件のデータを読み込む
     const dataset = [
         <?php foreach ($cherrys as $cherry): ?>
-            [<?= $cherry->id ?>, '<?= $cherry->name ?>', '<?= $cherry->yomi_name ?>', '<?= $cherry->pref ?>', '<?= $cherry->city ?>', <?= $cherry->lat ?>, <?= $cherry->long ?>],
+            [<?= $cherry['id'] ?>, '<?= $cherry['name'] ?>', '<?= $cherry['yomi_name'] ?>', '<?= $cherry['pref'] ?>', '<?= $cherry['city'] ?>', <?= $cherry['lat'] ?>, <?= $cherry['lng'] ?>],
         <?php endforeach; ?>
     ];
 
@@ -45,8 +47,13 @@
 
         // 地図、中央はlocation[0]に
         const map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 4,
-            center: locations[0],
+            zoom: 6,
+            center: {lat: <?= $lat ?>, lng: <?= $lng ?>},
+        });
+
+        var yourPosition = new google.maps.Marker({
+            position: {lat: <?= $lat ?>, lng: <?= $lng ?>},
+            map: map
         });
 
         // locationを指すmarker
