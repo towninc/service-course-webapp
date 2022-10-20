@@ -44,25 +44,6 @@ class CherrysController extends AppController
         $this->set(compact('lng'));
     }
 
-    public function mapCherryShowAll()
-    {
-        header("Content-Type: application/json; charset=UTF-8"); //ヘッダー情報の明記。必須。
-        
-        $sql = "SELECT * FROM cherrys";
-
-        $connection = ConnectionManager::get('default');
-        // 複数行を取得する場合はfetch → fetchall('assoc')にします
-        $cherrys = $connection->execute($sql)->fetchall('assoc');
-        // debug($cherrys);
-
-        $lat = 36.38992;
-        $lng = 139.06065;
-    
-        $this->set(compact('cherrys'));
-        $this->set(compact('lat'));
-        $this->set(compact('lng'));
-    }
-
     /**
      * Index method
      *
