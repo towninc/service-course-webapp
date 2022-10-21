@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Datasource\ConnectionManager;
+use Cake\Http\Exception\BadRequestException;
+use Cake\Http\Exception\NotFoundException;
 
 
 /**
@@ -18,7 +20,8 @@ class CherrysController extends AppController
     public function initialize()
     {
         parent::initialize();
-        $this->loadComponent('Security');
+        // $this->loadComponent('Security');
+        $this->loadComponent('RequestHandler');
     }
 
     public function mapCherrySearch()
@@ -27,21 +30,24 @@ class CherrysController extends AppController
 
     public function mapCherryResult()
     {
-        header("Content-Type: application/json; charset=UTF-8"); //ヘッダー情報の明記。必須。
-        
+        $this->autoRender = false;
+
+        if(!$this->request->is('ajax')) {
+            throw new BadRequestException();
+        }
+
+        // データを取得
         $lat = $this->request->getData('lat');
         $lng = $this->request->getData('lng');
-
+        
         $sql = "CALL `findNearestCherry`(" . $lat . ", " . $lng . ");";
-
         $connection = ConnectionManager::get('default');
-        // 複数行を取得する場合はfetch → fetchall('assoc')にします
+        // 複数行を取得する場合はfetch → fetchall('assoc')に
         $cherrys = $connection->execute($sql)->fetchall('assoc');
         // debug($cherrys);
 
-        $this->set(compact('cherrys'));
-        $this->set(compact('lat'));
-        $this->set(compact('lng'));
+        return $this->response->withType('application/json')
+        ->withStringBody(json_encode(compact('cherrys')));
     }
 
     /**

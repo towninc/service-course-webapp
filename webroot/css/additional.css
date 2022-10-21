@@ -1,0 +1,13 @@
+#map {
+    height: 600px;
+    width: 100%;
+}
+#credit {
+    color: gainsboro;
+}
+#big {
+    font-size: 1.5em;
+}
+#small {
+    font-size: 0.7em;
+}
