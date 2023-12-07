@@ -6,7 +6,7 @@ async function initMap() {
     // console.log("success loading map");
     const { Map, LatLngBounds } = await google.maps.importLibrary("maps");
     const { AdvancedMarkerView } = await google.maps.importLibrary("marker");
-
+    
     const center = { lat: 36.0047, lng: 137.5936 };
     map = new Map(document.getElementById("map"), {
         center: center,
@@ -21,6 +21,7 @@ async function initMap() {
     });
 }
 
+// 表示領域内のデータを取得
 function handleMapIdle(Marker) {
     const bounds = map.getBounds();
     const ne = bounds.getNorthEast(); // 北東の座標
@@ -47,6 +48,7 @@ function handleMapIdle(Marker) {
     });
 }
 
+// マーカー表示
 function showMarkers(hotelData, Marker) {
     clearMarkers();
 
@@ -56,10 +58,26 @@ function showMarkers(hotelData, Marker) {
             position: { lat: parseFloat(hotel.latitude), lng: parseFloat(hotel.longitude) },
             title: hotel.name,
         });
+        marker.addListener('click', () => {
+            handleMarkerClick(marker, hotel);
+        });
         markers.push(marker)
     });
 }
 
+// クリックしたマーカーの情報を表示
+function handleMarkerClick(marker, hotel) {
+    const infoWindow = new google.maps.InfoWindow({
+        content: 
+        `<h3>${hotel.name}</h3>
+        <p>所在地: ${hotel.address}<p>
+        <p>電話: ${hotel.phone_number}<p>
+        <p><a href="${hotel.url}" target="_blank">${hotel.url}</a><p>` 
+        ,
+    });
+
+    infoWindow.open(map, marker);
+}
 function clearMarkers() {
     markers.forEach((marker) => marker.setMap(null));
     markers = [];

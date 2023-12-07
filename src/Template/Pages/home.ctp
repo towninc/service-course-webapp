@@ -12,7 +12,7 @@
     <?= $this->Html->css("GoogleMap.css") ?>
 </head>
 <body>
-    <h3>My Google Maps Demo</h3>
+    <h3>ほてるまっぷ</h3>
     <div id="map"></div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFd7DJ4EbzWeguZ60BSYm5TJ1OdkOdyRY&callback=initMap&v=beta"
         defer></script>
